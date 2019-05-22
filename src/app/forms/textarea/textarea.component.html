@@ -1,0 +1,18 @@
+<div class="input_container">
+    <textarea class="{{className}}" [ngClass]="{'field-error':controlOptions.errors && controlOptions.touched}" [formControl]=" controlOptions " [id]="controlName " (input)="onChange($event) " (blur)="blurLost($event) " [tabindex]="tabindex "></textarea>
+    <rosa-helper [message]="message.value " [type]="message.type " *ngIf="message "></rosa-helper>
+
+    <div *ngIf="controlOptions.touched ">
+
+        <div *ngIf="controlOptions.errors ">
+            <rosa-helper [message]=" 'Обязательное поле' " [type]=" 'error' " *ngIf="controlOptions.errors.required "></rosa-helper>
+            <rosa-helper [message]=" 'Значение слишком короткое' " [type]=" 'error' " *ngIf="!controlOptions.errors.required && controlOptions.errors.minlength "></rosa-helper>
+
+            <div *ngIf="!controlOptions.errors.required && controlOptions.errors.pattern ">
+                <rosa-helper [message]=" 'Недопустимые символы, только цифры' " [type]=" 'error' " *ngIf="controlOptions.errors.pattern.requiredPattern==='/[0-9]/' "></rosa-helper>
+                <rosa-helper [message]=" 'Недопустимые символы, только буквы' " [type]=" 'error' " *ngIf="controlOptions.errors.pattern.requiredPattern==='/[А-я]/' "></rosa-helper>
+            </div>
+        </div>
+
+    </div>
+</div>

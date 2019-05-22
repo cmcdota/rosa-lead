@@ -1,0 +1,81 @@
+<form [formGroup]="_personalForm" novalidate>
+
+
+    <div class="flex-columns">
+        <div class="flex-columns__left">
+            <h6>01. Информация о клиенте</h6>
+
+            <div class="form-group">
+                <rosa-label [value]="'Ф.И.О. клиента'"></rosa-label>
+                <rosa-input [tabindex]="1" [placeholder]="'ФИО клиента'" [controlName]="'leadName'" [controlOptions]="_personalForm.controls['leadName']" [required]="true"></rosa-input>
+            </div>
+            <div class="form-group">
+                <rosa-label [value]="'Контактный телефон'"></rosa-label>
+                <rosa-input [required]="true" [className]="'input-phone'" [controlName]="'phone'" [fieldModify]="'phone'" [controlOptions]="_personalForm.controls['phone']" [tabindex]="2"></rosa-input>
+                <div class="phone-code"><span>+7</span></div>
+            </div>
+
+            <div class="form-group">
+                <rosa-label [value]="'Дата рождения'"></rosa-label>
+                <rosa-input [required]="true" [controlName]="'birthday'" [fieldModify]="'date'" [controlOptions]="_personalForm.controls['birthday']" [tabindex]="3"></rosa-input>
+            </div>
+
+
+        </div>
+
+        <div class="flex-columns__right">
+            <h6>02. Информация для менеджера</h6>
+            <div class="products">
+                <rosa-label [value]="'Продукт банка'"></rosa-label>
+                <div class="products__grid">
+                    <rosa-tile *ngFor="let product of products; index as i;" [content]="product.product_name" [tabindex]="i+5" [helperContent]='product?.inn_required' [classList]="{'selected':activeProduct == i}" (click)="setProduct(product?.product_id, i, product?.inn_required, product?.isVip)"></rosa-tile>
+                </div>
+                <div class="form-hiddens" [ngClass]="{'hidden':!isPackage}" style="padding-top: 24px;">
+                    <h3 style="font-size: 14px;font-weight: 600;">Укажите инн клиента:</h3>
+                    <rosa-companysearch (results)="parseCompany($event)" [tabindex]="4"></rosa-companysearch>
+
+                    <div class="form-group" style="margin-top: -16px;">
+                        <rosa-label [value]="'Инн'"></rosa-label>
+                        <rosa-input [required]="true" [controlName]="'tax'" [controlOptions]="_personalForm.controls['tax']" [tabindex]="4"></rosa-input>
+                    </div>
+                </div>
+            </div>
+
+            <rosa-officesearch (results)="setOffice($event)" [tabindex]="products.length+4" [userOffice]="officeActive"></rosa-officesearch>
+            <rosa-managersearch *ngIf="managersList.length > 0" [managers]="managersList" [selectedManager]="manager" (results)="setManager($event)" [tabindex]="products.length+5"></rosa-managersearch>
+
+            <div class="comment__group">
+                <div class="label__header">
+                    <rosa-label [value]="'Комментарий'" style="margin-right:8px;"></rosa-label>
+                    <rosa-info (mouseenter)="t.style.display='block'" (mouseleave)="t.style.display='none'"></rosa-info>
+                    <div class="tooltip-container" #t>
+                        <rosa-tooltip [innerContent]="helperComment"></rosa-tooltip>
+                    </div>
+                </div>
+
+                <div class="input_container" *ngIf="!commentActive">
+                    <p class="big">{{_personalForm.controls['comment'].value.length > 0 ? _personalForm.controls['comment'].value: 'без комментария'}}</p>
+                </div>
+                <div class="input_container" *ngIf="commentActive">
+                    <rosa-textarea [message]="commentValidateMessage" [controlName]="'comment'" [controlOptions]="_personalForm.controls['comment']" [tabindex]="products.length+5" (keyup)="commentKey($event)" [required]="true"></rosa-textarea>
+                    <rosa-helper [message]="'Нажатие Enter свернет комментарий'"></rosa-helper>
+                </div>
+
+                <div *ngIf="!commentActive" [ngSwitch]="_personalForm.controls['comment'].value">
+                    <rosa-button-flat *ngSwitchCase="0" (click)="commentActive=!commentActive" [tabindex]="products.length+5" [content]="'Добавить'"></rosa-button-flat>
+                    <rosa-button-flat *ngSwitchDefault (click)="changeComment($event)" [tabindex]="products.length+5" [content]="'Изменить'"></rosa-button-flat>
+                </div>
+            </div>
+            <div class="form-group__buttons">
+                <!--<p class="form_err" *ngIf="formMessage">{{formMessage}}</p>-->
+                <div class="button_container">
+                    <div class="button_daemon" *ngIf="buttonDaemon">Лид направлен</div>
+                    <rosa-submit (click)="sendLead()" [className]="'red'" type="'submit'" [tabindex]="products.length+6" [content]="'Направить лид'"></rosa-submit>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--{{_personalForm.value | json}}-->
+
+</form>

@@ -1,0 +1,14 @@
+<div class="input_container">
+    <input type="text" class="{{className}}" [formControl]="controlOptions" [ngClass]="{'listbox__active': dropControl, 'field-error':controlOptions.errors && controlOptions.touched}" [id]="controlName" (input)="onChange($event)" (blur)="blurLost($event)"
+        [tabindex]="tabindex" [placeholder]="placeholder" [attr.disabled]="isExist ? '':null" [attr.autofocus]="autofocus ? '':null" [textMask]="{mask: allowedMask}">
+    <div *ngIf="controlOptions.touched">
+        <div *ngIf="controlOptions.errors">
+            <rosa-helper [message]="'Обязательное поле'" [type]="'error'" *ngIf="controlOptions.errors.required"></rosa-helper>
+            <rosa-helper [message]="'Значение слишком короткое'" [type]="'error'" *ngIf="!controlOptions.errors.required && controlOptions.errors.minlength"></rosa-helper>
+            <div *ngIf="!controlOptions.errors.required && controlOptions.errors.pattern">
+                <rosa-helper [message]="'Недопустимые символы, только цифры'" [type]="'error'" *ngIf="controlOptions.errors.pattern.requiredPattern === '/[0-9]/'"></rosa-helper>
+                <rosa-helper [message]="'Недопустимые символы, только буквы'" [type]="'error'" *ngIf="controlOptions.errors.pattern.requiredPattern === '/[А-я]/'"></rosa-helper>
+            </div>
+        </div>
+    </div>
+</div>

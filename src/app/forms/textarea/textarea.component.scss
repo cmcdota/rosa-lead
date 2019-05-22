@@ -1,0 +1,43 @@
+@charset 'UTF-8';
+@import 'abstracts/variables',
+'abstracts/functions',
+'abstracts/mixins';
+textarea {
+    width: 100%;
+    height: calc(#{$gp} * 10);
+    color: $white-main;
+    padding: $gp calc(#{$gp} * 2);
+    border: none;
+    background: #FFF;
+    border-radius: 4px;
+    font-size: $rosa-fs-r;
+    font-weight: $rosa-fw-regular;
+    line-height: 1.5;
+    box-sizing: border-box;
+    transition: box-shadow 0.35s ease;
+    box-shadow: 0 0 0 1px rgba(43, 53, 66, .16), 0 0 0 1px rgba(63, 78, 97, 0), 0 0 0 2px rgba(63, 78, 97, 0), 0 1px 1px rgba(0, 0, 0, .08);
+    @include input-placeholder {
+        font-size: $rosa-fs-r;
+        color: $white-tone02;
+    }
+    &:focus {
+        outline: none;
+        transition: box-shadow 0.35s ease;
+        box-shadow: 0 0 0 1px rgba(43, 53, 66, 0), 0 0 0 1px rgba(63, 78, 97, .2), 0 0 0 2px rgba(63, 78, 97, .25), 0 1px 1px rgba(0, 0, 0, .08);
+    }
+    &:active {
+        outline: none;
+        transition: box-shadow 0.35s ease;
+        box-shadow: 0 0 0 1px rgba(43, 53, 66, 0), 0 0 0 1px rgba(63, 78, 97, .2), 0 0 0 2px rgba(63, 78, 97, .25), 0 1px 1px rgba(0, 0, 0, .08);
+        &:disabled {
+            box-shadow: 0 0 0 1px rgba(43, 53, 66, .16), 0 0 0 1px rgba(63, 78, 97, 0), 0 0 0 2px rgba(63, 78, 97, 0), 0 1px 1px rgba(0, 0, 0, .08) !important;
+        }
+    }
+    &:disabled {
+        opacity: .5;
+    }
+}
+
+.field-error {
+    box-shadow: 0 0 0 1px rgba(43, 53, 66, 0), 0 0 0 1px rgba(235, 69, 86, .2), 0 0 0 2px rgba(235, 69, 86, .25), 0 1px 1px rgba(0, 0, 0, .08) !important;
+}

@@ -1,0 +1,30 @@
+@import '~pretty-checkbox/src/pretty-checkbox.scss';
+.pretty {
+    font-size: 14px;
+}
+
+.pretty.p-switch .state:before {
+    border: 1px solid #a8a8a8 !important;
+}
+
+.pretty.p-switch .state label:after {
+    background-color: #a8a8a8 !important;
+}
+
+.pretty.p-switch .state:before {
+    border: 1px solid #a8a8a8;
+}
+
+.pretty .state label:before {
+    border-color: #a8a8a8 !important;
+    ;
+}
+
+.pretty.p-switch input:checked~.state:before {
+    border-color: #a8a8a8;
+}
+
+.pretty.p-switch.p-fill input:checked~.state:before {
+    border-color: #a8a8a8 !important;
+    background-color: #a8a8a8 !important;
+}

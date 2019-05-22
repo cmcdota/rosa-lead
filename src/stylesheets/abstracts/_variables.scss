@@ -1,0 +1,173 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+/// Regular font family
+/// @type List
+$text-font-stack: 'webfont',
+'Helvetica',
+'Segoe UI',
+'Arial',
+sans-serif !default;
+/// Code (monospace) font family
+/// @type List
+$code-font-stack: 'Courier New',
+'DejaVu Sans Mono',
+'Bitstream Vera Sans Mono',
+'Monaco',
+monospace !default;
+/// Container's maximum width
+/// @type Length
+$max-width: 1180px !default;
+/// Breakpoints map
+/// @prop {String} keys - Keys are identifiers mapped to a given length
+/// @prop {Map} values - Values are actual breakpoints expressed in pixels
+$breakpoints: ( 'small': 320px, 'medium': 768px, 'large': 1024px, ) !default;
+/// Relative or absolute URL where all assets are served from
+/// @type String
+/// @example scss - When using a CDN
+///   $base-url: 'http://cdn.example.com/assets/';
+$base-url: '/assets/' !default;
+$main: #383838;
+//reboot bootstrap variables
+$black: #383838;
+$font-family-base: $text-font-stack;
+$font-size-base: 1.36em;
+$font-weight-base: normal;
+$line-height-base: 2;
+$body-color: #383838;
+$body-bg: white;
+$headings-margin-bottom: 0;
+$paragraph-margin-bottom: 0;
+$dt-font-weight: normal;
+$link-color: #0066FF;
+$link-hover-color: #0066FF;
+$link-decoration: none;
+$link-hover-decoration: none;
+$font-family-monospace: $code-font-stack;
+$table-cell-padding: 0;
+$table-caption-color: black;
+$label-margin-bottom: 0;
+// COLORS 01. background
+$lightgray: #f2f2f3;
+$altgray01: #eaeeef;
+$altgray02: #ebebeb;
+$gray: #d7d8de;
+$space: #484848;
+$dark: #131313;
+$white: white;
+// COLORS 02. Lightgray
+$lightgray-main: #383838;
+$lightgray-complement: $gray;
+$lightgray-space: $space;
+$lightgray-dark: $dark;
+$lightgray-secondary: #515665;
+$lightgray-deepblue: #2b3542;
+$lightgray-tone01: #9ea3aa;
+$lightgray-tone02: #d0d0d0;
+$lightgray-tone03: #e8e8e8;
+$lightgray-borders01: rgba(70, 70, 72, .2);
+$lightgray-borders02: $white;
+// COLORS 03. White
+$white-main: #333;
+$white-complement: $gray;
+$white-space: $space;
+$white-dark: $dark;
+$white-secondary: #595959;
+$white-tone01: #9ea3aa;
+$white-tone02: #4c4c4c;
+$white-tone03: #ebebeb;
+$white-borders01: rgba(70, 70, 72, .2);
+$white-borders02: rgba(70, 70, 72, .8);
+// COLORS 04. Gray
+$gray-main: #464648;
+$gray-complement: #cdced4;
+$gray-deepblue: #2b3542;
+$gray-tone01: #c0c0c0;
+$gray-tone02: #f2f2f3;
+$gray-borders01: #b9b9b9;
+// COLORS 05. Space
+$space-main: $gray;
+$space-complement: #dedede;
+$space-tone01: #1b1b1b;
+$space-tone02: #2b2f33;
+$space-tone03: #f2f2f3;
+$space-borders01: #d7d8de;
+// COLORS 06. Dark
+$dark-main: #ebebeb;
+$dark-complement: #cfcfcf;
+$dark-tone01: #363636;
+$dark-tone02: #464648;
+$dark-tone03: $gray;
+$dark-borders01: $space;
+// COLORS 07. Colored
+$primary: #cf0024;
+$primary-l: #E80027;
+$primary-d: #B5001E;
+$complement: #11e8d6;
+$complement-l: #3bf1e1;
+$complement-d: #0ebfaa;
+$blue: #0066FF;
+$blue-l: #0066FF;
+$blue-d: #0066FF;
+$green: #11e86b;
+$green-l: #3bf187;
+$green-d: #0eb855;
+$link:#0066FF;
+$link-l: #0066FF;
+$link-d: #0066FF;
+// COLORS 03. Elements
+$border-white: rgba(215, 216, 222, .5);
+$border-white-2: rgba(215, 216, 222, .8);
+$border-black: rgba(234, 238, 239, .5);
+$border-black-2: rgba(234, 238, 239, .8);
+$input-default: rgba(43, 53, 66, .5);
+$input-focus: #0066FF;
+$input-active:#0066FF;
+// Box Shadows
+$elevation-1: 0 2px 5px 0 rgba(43, 53, 66, .1),
+0 1px 1px 0 rgba(0, 0, 0, .07);
+$elevation-2: 0 7px 14px 0 rgba(43, 53, 66, .1),
+0 3px 6px 0 rgba(0, 0, 0, .07);
+$elevation-3: 0 15px 35px 0 rgba(43, 53, 66, .1),
+0 5px 15px 0 rgba(0, 0, 0, .07);
+$elevation-4: 0 50px 100px 0 rgba(43, 53, 66, 1),
+0 15px 35px 0 rgba(43, 53, 66, .1),
+0 5px 15px 0 rgba(0, 0, 0, .07);
+/// Copy text color
+/// @type Color
+$text-color: $main !default;
+/// Main brand color
+/// @type Color
+$brand-color: $primary !default;
+/// Light grey
+/// @type Color
+$light-grey: $lightgray !default;
+/// Medium grey
+/// @type Color
+$mid-grey: $gray !default;
+/// Dark grey
+/// @type Color
+$dark-grey: $dark !default;
+// Font Sizes
+$rosa-fs-h1: 48px;
+$rosa-fs-h2: 36px;
+$rosa-fs-h3: 32px;
+$rosa-fs-h4: 26px;
+$rosa-fs-h5: 22px;
+$rosa-fs-h6: 20px;
+$rosa-fs-l: 18px;
+$rosa-fs-m: 17px;
+$rosa-fs-rl: 16px;
+$rosa-fs-r: 14px;
+$rosa-fs-rm: 13px;
+$rosa-fs-rs: 12px;
+$rosa-fs-rxs: 10px;
+// Font Weights
+$rosa-fw-extra: 200;
+$rosa-fw-light: 300;
+$rosa-fw-regular: 400;
+$rosa-fw-medium: 500;
+$rosa-fw-semibold: 600;
+/// GRID settings
+$grid-point: 8px;
+$gp: $grid-point;

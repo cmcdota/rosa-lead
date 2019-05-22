@@ -1,0 +1,23 @@
+@charset 'UTF-8';
+@import 'abstracts/variables',
+'abstracts/functions',
+'abstracts/mixins';
+label {
+    width: 100%;
+    font-size: 13px;
+    font-weight: $rosa-fw-medium;
+    line-height: calc(#{$gp} * 2);
+    letter-spacing: 0;
+    color: #464648;
+    margin-bottom: calc(#{$gp});
+    ;
+    display: inline-block;
+    text-transform: lowercase;
+    .required {
+        color: $primary;
+    }
+}
+
+.disabled {
+    opacity: .5;
+}

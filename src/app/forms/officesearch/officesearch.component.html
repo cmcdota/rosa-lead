@@ -1,0 +1,43 @@
+<form [formGroup]='officeGroup'>
+    <div class="dadata-component" [attr.aria-autocomplete]="showList ? 'list': 'none'" [attr.aria-expanded]="showList ? true : false " role="combobox" [attr.aria-activedescendant]="dadataItemFocus" #dadatafield>
+        <div class="form-control">
+            <div class="label__header">
+                <rosa-label [value]="'Принимающее отделение'"></rosa-label>
+                <rosa-label-helper [helperContent]="helperContent"></rosa-label-helper>
+            </div>
+
+
+            <div class="preview__wrapper" *ngIf="userOffice && !editMode" [style.display]="userOffice && !editMode ? 'flex' : 'none'">
+                <rosa-preview [header]="'№'+ userOffice.branch + ' ' + userOffice.nazvanie" [content]="userOffice.address"></rosa-preview>
+                <rosa-button-flat (click)="editMode=!editMode" [tabindex]="tabindex" [content]="'Изменить'"></rosa-button-flat>
+            </div>
+
+            <div class="form-control__icon" [style.display]="editMode ? 'block' : 'none'">
+                <rosa-input [placeholder]="'Начните вводить для поиска офиса'" [dropControl]="showList && searchResults" [className]="'input-icon'" [controlName]="'officeSuggest'" [controlOptions]="officeGroup.controls['officeSuggest']" [tabindex]="tabindex" role="textbox"
+                    (keyup)="onKey($event)" (focusEvent)="dadataFocus()" (blurEvent)="dadataBlur($event)" tabindex="1"></rosa-input>
+                <div class="icon-container">
+                    <svg width="16px" height="16px" viewBox="0 0 16 16">
+                                <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <g transform="translate(-30.000000, -74.000000)" fill-rule="nonzero">
+                                        <g id="search-icon" transform="translate(30.000000, 74.000000)">
+                                            <path d="M7.20987654,14.4197531 C3.22797168,14.4197531 0,11.1917814 0,7.20987654 C0,3.22797168 3.22797168,0 7.20987654,0 C11.1917814,0 14.4197531,3.22797168 14.4197531,7.20987654 C14.4197531,11.1917814 11.1917814,14.4197531 7.20987654,14.4197531 Z M7.20987654,12.6419753 C10.2099419,12.6419753 12.6419753,10.2099419 12.6419753,7.20987654 C12.6419753,4.20981124 10.2099419,1.77777778 7.20987654,1.77777778 C4.20981124,1.77777778 1.77777778,4.20981124 1.77777778,7.20987654 C1.77777778,10.2099419 4.20981124,12.6419753 7.20987654,12.6419753 Z" id="Oval"></path>
+                                            <path d="M15.7396505,14.4825718 C16.0867832,14.8297045 16.0867832,15.3925178 15.7396505,15.7396505 C15.3925178,16.0867832 14.8297045,16.0867832 14.4825718,15.7396505 L11.0455347,12.3026134 C10.698402,11.9554807 10.698402,11.3926674 11.0455347,11.0455347 C11.3926674,10.698402 11.9554807,10.698402 12.3026134,11.0455347 L15.7396505,14.4825718 Z" id="Shape"></path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                </div>
+                <rosa-loader *ngIf="pending"></rosa-loader>
+            </div>
+            <ul id="dadata-searchbar__listbox" role="listbox" [ngClass]="showList && searchResults ? 'opened' : ''">
+                <li *ngFor="let result of searchResults |slice:0:5 ; index as i; first as isFirst" (mouseenter)="mouseOverAction(i, $event)" (mouseleave)="mouseLeaveAction(i)" (click)="sendDadata(result)" class="dadataresult" [attr.aria-selected]="isFirst ? true : false"
+                    id="dadata-searchbar__option-{{result.branch}}" role="option" tabindex="-1">
+                    <div class="dadata dadata_suggest dadataShow">
+                        <span>{{result.nazvanie | quotes}} #{{result?.branch}}</span>
+                        <span class="suggest__secondary" *ngIf="result.address">{{result?.address}}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</form>

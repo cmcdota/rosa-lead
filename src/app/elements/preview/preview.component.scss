@@ -1,0 +1,22 @@
+@charset 'UTF-8';
+@import 'abstracts/variables',
+'abstracts/functions',
+'abstracts/mixins';
+.preview {
+    min-width: 320px;
+    user-select: none;
+    h6 {
+        margin-bottom: .3em;
+        color: $white-main;
+        font-size: 13px !important;
+        font-weight: 00;
+    }
+    span {
+        display: block;
+        color: $white-secondary;
+        font-size: $rosa-fs-rm;
+        font-weight: $rosa-fw-regular;
+        margin-bottom: 0;
+        //line-height: 1.5;
+    }
+}

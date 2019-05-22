@@ -1,0 +1,25 @@
+<section class="pane-white" id="create">
+    <div class="inner-content">
+        <div class="header">
+            <h2>Создать новый лид</h2>
+            <nav class="tabs">
+                <rosa-tab (click)="setTab(1, $event)" [className]="{'tab-active':tab==1}" [content]="'Юр.лицо'"></rosa-tab>
+                <rosa-tab (click)="setTab(2, $event)" [className]="{'tab-active':tab==2}" [content]="'Физ.лицо'"></rosa-tab>
+            </nav>
+        </div>
+        <div>
+            <rosa-individ (cardRecived)="updateCards($event)" *ngIf="tab==2"></rosa-individ>
+            <rosa-business (cardRecived)="updateCards($event)" *ngIf="tab==1"></rosa-business>
+        </div>
+        <div>
+        </div>
+    </div>
+</section>
+<section class="cards-container" id="leadsList">
+    <div *ngIf="leads$.length > 0; else noLeads">
+        <rosa-card *ngFor="let lead of leads$;" [lead]="lead"></rosa-card>
+    </div>
+    <ng-template #noLeads>
+        <h1 class='noleads'>Вы еще не создали ни одного лида</h1>
+    </ng-template>
+</section>

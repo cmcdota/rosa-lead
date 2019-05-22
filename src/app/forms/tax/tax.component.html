@@ -1,0 +1,12 @@
+<div class="label__header">
+    <rosa-label [value]="'ИНН организации'"></rosa-label>
+    <rosa-label-helper [helperContent]="helperContent"></rosa-label-helper>
+</div>
+
+<div class="input_container">
+    <rosa-input [tabindex]="3" [placeholder]="placeholder" [fieldModify]="'digits'" [controlName]="controlName" [controlOptions]="controlOptions" [required]="true" [tabindex]="tabindex"></rosa-input>
+    <rosa-loader *ngIf="pending"></rosa-loader>
+</div>
+<rosa-helper [message]="'Введите инн для проверки отсутствия контакта в базе банка'" [type]="'info'" *ngIf="!controlOptions.touched || controlOptions.value == null"></rosa-helper>
+<rosa-helper [message]="'Контакт уже существует'" [type]="'error'" *ngIf="searchResults=='exist'"></rosa-helper>
+<rosa-helper [message]="'Контакт может быть добавлен'" [type]="'success'" *ngIf="searchResults=='doesnt_exists'"></rosa-helper>

@@ -1,0 +1,79 @@
+<form [formGroup]="_businessForm" novalidate>
+
+    <div class="flex-columns">
+        <div class="flex-columns__left">
+            <h6>01. Информация о клиенте</h6>
+            <rosa-companysearch (results)="parseCompany($event)" [tabindex]="1"></rosa-companysearch>
+            <div class="form-group">
+                <rosa-tax [placeholder]="'идентификатор 10–12 цифр'" [controlName]="'tax'" [controlOptions]="_businessForm.controls['tax']" [required]="true" [tabindex]="2" (results)="checkExist($event)" [isExist]="false" [autofocus]="true" appAutofocus></rosa-tax>
+            </div>
+            <div class="form-group">
+                <rosa-label [value]="'Наименование'" [disabled]="companyExist"></rosa-label>
+                <rosa-input [tabindex]="3" [placeholder]="'название организации или ФИО предпринимателя'" [controlName]="'company'" [controlOptions]="_businessForm.controls['company']" [required]="true" [isExist]="companyExist"></rosa-input>
+            </div>
+
+            <div class="form-group">
+                <rosa-label [value]="'Фактический адрес'" [disabled]="companyExist"></rosa-label>
+                <rosa-input [placeholder]="'фактический адрес'" [controlName]="'address'" [controlOptions]="_businessForm.controls['address']" [required]="true" [tabindex]="4" [isExist]="companyExist"></rosa-input>
+            </div>
+            <div class="form-group">
+                <rosa-label [value]="'контактное лицо'" [disabled]="companyExist"></rosa-label>
+                <rosa-input [placeholder]="'собственник или доверенное лицо'" [controlName]="'leadName'" [controlOptions]="_businessForm.controls['leadName']" [tabindex]="5" [isExist]="companyExist"></rosa-input>
+            </div>
+
+            <div class="form-group">
+                <rosa-label [value]="'Контактный телефон'" [disabled]="companyExist"></rosa-label>
+                <rosa-input [required]="true" [className]="'input-phone'" [controlName]="'phone'" [fieldModify]="'phone'" [controlOptions]="_businessForm.controls['phone']" [tabindex]="6" [isExist]="companyExist"></rosa-input>
+                <div class="phone-code"><span>+7</span></div>
+            </div>
+
+        </div>
+        <div class="flex-columns__right">
+            <h6>02. Информация для менеджера</h6>
+            <div class="products">
+                <rosa-label [value]="'Продукт банка'"></rosa-label>
+                <div class="products__grid">
+                    <rosa-tile *ngFor="let product of products; index as i;" [content]="product.product_name" [tabindex]="i+6" [classList]="{'selected':activeProduct == i}" (click)="setProduct(product.product_id, i)"></rosa-tile>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <rosa-label [value]="'Информация о доходах'"></rosa-label>
+                <rosa-checkbox [label]="'Доход клиента свыше 400 млн. руб.'" (ChangeEvent)="setCorporateValue($event)"></rosa-checkbox>
+            </div>
+
+            <rosa-officesearch (results)="setOffice($event)" [tabindex]="products.length+7" [userOffice]="officeActive"></rosa-officesearch>
+
+            <rosa-managersearch *ngIf="managersList.length > 0" [managers]="managersList" [selectedManager]="manager" (results)="setManager($event)" [tabindex]="products.length+8"></rosa-managersearch>
+
+
+            <div class="comment__group">
+
+                <div class="label__header">
+                    <rosa-label [value]="'Комментарий'" style="margin-right:8px;"></rosa-label>
+                    <rosa-label-helper [helperContent]="helperContent"></rosa-label-helper>
+
+                </div>
+
+                <div class="input_container" *ngIf="!commentActive">
+                    <p class="big">{{_businessForm.controls['comment'].value.length > 0 ? _businessForm.controls['comment'].value: 'без комментария'}}</p>
+                </div>
+                <div class="input_container" *ngIf="commentActive">
+                    <rosa-textarea [message]="commentValidateMessage" [controlName]="'comment'" [controlOptions]="_businessForm.controls['comment']" [tabindex]="products.length+9" (keyup)="commentKey($event)" [required]="true"></rosa-textarea>
+                    <rosa-helper [message]="'Нажатие Enter свернет комментарий'"></rosa-helper>
+                </div>
+
+                <div *ngIf="!commentActive" [ngSwitch]="_businessForm.controls['comment'].value">
+                    <rosa-button-flat *ngSwitchCase="0" (click)="commentActive=!commentActive" [tabindex]="products.length+9" [content]="'Добавить'"></rosa-button-flat>
+                    <rosa-button-flat *ngSwitchDefault (click)="changeComment($event)" [tabindex]="products.length+9" [content]="'Изменить'"></rosa-button-flat>
+                </div>
+            </div>
+            <div class="form-group__buttons">
+                <rosa-submit (click)="sendLead()" [className]="'red'" type="'submit'" [tabindex]="products.length+10" [content]="'Направить лид'"></rosa-submit>
+            </div>
+        </div>
+    </div>
+
+    <!--{{_businessForm.value | json}}-->
+
+</form>

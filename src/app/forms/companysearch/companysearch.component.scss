@@ -1,0 +1,134 @@
+@charset 'UTF-8';
+@import 'abstracts/variables',
+'abstracts/functions',
+'abstracts/mixins';
+:host {
+    margin-bottom: calc(#{$gp} * 4);
+    display: block;
+}
+
+.form-control {
+    position: relative;
+}
+
+.form-control__icon {
+    position: relative;
+    height: auto;
+    display: inline-block;
+    width: 100%;
+}
+
+.dadata-component {
+    position: relative;
+}
+
+li[aria-selected="true"] {
+    .dadata_suggest {
+        background-color: $lightgray;
+        span {
+            transition: opacity 0.3s ease;
+        }
+    }
+}
+
+li[aria-selected="false"] {
+    .dadata_suggest {
+        background: #FFF !important;
+    }
+}
+
+.dadata_suggest {
+    padding: 4px 12px;
+    cursor: pointer !important;
+    opacity: 1;
+    position: relative;
+    background-color: #FFF;
+    display: flex;
+    width: 100%;
+    transition: 0.3s ease-out;
+    flex-wrap: wrap;
+    &:hover {
+        transition: background-color 0.3s ease;
+        background-color: $lightgray;
+        span {
+            transition: opacity 0.3s ease;
+        }
+    }
+    span {
+        user-select: none;
+        font-size: 13px;
+        font-weight: $rosa-fw-medium;
+        line-height: 20px;
+        color: $white-main;
+        margin: 0 0 2px 0;
+        width: 100%;
+        display: inline-block;
+        text-transform: lowercase;
+        transition: opacity 0.3s ease;
+        @include truncate(100%);
+    }
+    .suggest__secondary {
+        font-size: 13px;
+        line-height: 16px;
+        color: $white-secondary;
+        font-weight: $rosa-fw-regular !important;
+    }
+}
+
+#dadata-searchbar__listbox.opened {
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+}
+
+#dadata-searchbar__listbox {
+    @include reset(ul);
+    opacity: 0;
+    height: 0;
+    visibility: hidden;
+    z-index: -1;
+    transform-origin: 100% 100%;
+    position: absolute;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 99%;
+    top: 58px;
+    left: .5%;
+    z-index: 10;
+    background: #FFF;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15), 0 2px 12px 0 rgba(0, 0, 0, 0.12);
+    transition: opacity 0.4s ease-in, height 0.4s ease-in;
+}
+
+:host ::ng-deep rosa-loader {
+    top: 1px;
+    right: 24px;
+    position: absolute;
+}
+
+.icon-container {
+    position: absolute;
+    top: 0;
+    left: 12px;
+    height: 32px;
+    display: flex;
+    svg {
+        width: 12px;
+        height: 12px;
+        margin: auto 0;
+        path {
+            fill: #9EA3AA;
+            transition: fill 0.35s ease-out;
+        }
+    }
+}
+
+:host ::ng-deep rosa-label {
+    margin-right: $gp;
+}
+
+.label__header {
+    display: flex;
+    position: relative;
+    align-items: baseline;
+}

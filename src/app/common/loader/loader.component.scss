@@ -1,0 +1,67 @@
+@charset 'UTF-8';
+@import 'abstracts/variables',
+'abstracts/functions',
+'abstracts/mixins';
+.circle-preloader {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgba(43, 53, 66, 0.6);
+    border-top-color: $primary;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    background-color: $gray;
+    position: relative;
+    display: inline-block;
+    &:after,
+    &:before {
+        content: '';
+        display: block;
+    }
+}
+
+.spinner-5,
+.spinner-6 {
+    height: 0;
+    width: 0;
+    span {
+        display: block;
+        height: 5px;
+        width: 5px;
+        background-color: $gray;
+        position: absolute;
+        top: 0;
+        border-radius: 50%;
+        &:nth-child(1) {
+            left: -10px;
+            animation: bounce 1s .1s ease-in-out infinite;
+        }
+        &:nth-child(2) {
+            animation: bounce 1s .33s ease-in-out infinite;
+        }
+        &:nth-child(3) {
+            left: 10px;
+            animation: bounce 1s .66s ease-in-out infinite;
+        }
+    }
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-1px);
+        background-color: $primary;
+    }
+}

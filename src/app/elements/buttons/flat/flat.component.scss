@@ -1,0 +1,36 @@
+@charset 'UTF-8';
+@import 'abstracts/variables',
+'abstracts/functions',
+'abstracts/mixins';
+:host {
+    transition: all .3s ease;
+    line-height: 1em;
+    &:focus {
+        outline: rgba(235, 69, 86, .5) auto 3px;
+    }
+    &:active {
+        outline: none;
+    }
+}
+
+button {
+    @include button-reset;
+    color: $link;
+    font-size: $rosa-fs-rs;
+    line-height: 1em;
+    font-weight: $rosa-fw-medium;
+    transition: all .3s ease;
+    @include on-event() {
+        color: $link-d;
+        transition: all .3s ease;
+    }
+}
+
+.header-nav {
+    color: $gray-deepblue !important;
+    font-size: $rosa-fs-rm !important;
+    @include on-event() {
+        color: $white-tone01 !important;
+        transition: all .3s ease;
+    }
+}

@@ -1,0 +1,50 @@
+<div class="card">
+    <h4 *ngIf="lead.product_business == 'pro'">{{lead?.lead_field_naimenovanie}}</h4>
+    <h4 *ngIf="lead.product_business == 'fiz'">{{lead?.lead_field_fio}}</h4>
+    <div class="bage bage status_{{lead.lead_status}}"></div>
+    <div class="secondary_item" *ngIf="lead?.product_business === 'pro'">
+        <p class="item_header">Ф.И.О. представителя:</p>
+        <p class="item_description">{{lead?.lead_field_fio}}</p>
+    </div>
+    <div class="secondary_item" *ngIf="lead?.product_business === 'fiz'">
+        <p class="item_header">Дата рождения:</p>
+        <p class="item_description">{{lead?.lead_field_den_rozhdeniya.date | date}}</p>
+    </div>
+
+    <div class="secondary_item" *ngIf="lead?.product_business === 'pro'">
+        <p class="item_header">инн организации:</p>
+        <p class="item_description">{{lead?.lead_field_inn}}</p>
+    </div>
+
+    <div class="secondary_item" *ngIf="lead?.product_business === 'pro'">
+        <p class="item_header">адрес:</p>
+        <p class="item_description">{{lead?.lead_field_address}}</p>
+    </div>
+
+
+    <div class="secondary_item">
+        <p class="item_header">контактный телефон:</p>
+        <p class="item_description">{{lead?.lead_field_phone}}</p>
+    </div>
+
+
+
+
+    <div class="secondary_item">
+        <p class="item_header">комментарий отправителя:</p>
+        <p class="item_description">{{lead?.lead_field_comment}}</p>
+    </div>
+    <div class="secondary_item" *ngIf="lead?.lead_status_comment;">
+        <p class="item_header">комментарий исполнителя:</p>
+        <p class="item_description">{{lead?.lead_status_comment}}</p>
+    </div>
+    <div class="secondary_item">
+        <p class="item_header">Ответственный:</p>
+        <p class="item_description"><a href="https://proportal.rosbank.rus.socgen/?page=8&uid={{lead?.km_uid}}" target="_blank">{{lead?.km_fio}}</a></p>
+    </div>
+    <div class="secondary_item">
+        <p class="item_header">Доп. офис:</p>
+        <p class="item_description">#{{lead?.lead_field_do}}</p>
+    </div>
+
+</div>

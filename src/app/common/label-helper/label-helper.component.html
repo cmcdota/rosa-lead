@@ -1,0 +1,4 @@
+<div class="tooltip-container">
+    <rosa-info (mouseenter)="t=true" (mouseleave)="t=false"></rosa-info>
+    <rosa-tooltip [innerContent]="helperContent" *ngIf="t"></rosa-tooltip>
+</div>

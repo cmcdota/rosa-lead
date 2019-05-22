@@ -1,0 +1,120 @@
+@charset 'UTF-8';
+@import 'abstracts/variables',
+'abstracts/functions',
+'abstracts/mixins';
+@keyframes showCard {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation-name: showCard;
+    animation-duration: .25s;
+    animation-timing-function: ease-in-out;
+    background: white;
+    box-shadow: $elevation-2;
+    border-radius: 4px;
+    min-height: 200px;
+    width: 100%;
+    padding: 40px;
+    margin-bottom: 20px;
+    position: relative;
+    h4 {
+        @include truncate(850px);
+        text-transform: uppercase;
+    }
+}
+
+.bage {
+    box-sizing: border-box;
+    font-size: $rosa-fs-r;
+    font-weight: $rosa-fw-medium;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 40px;
+    height: 40px;
+    border-radius: 40px;
+    padding: 0;
+    width: 136px;
+    position: absolute;
+    right: 40px;
+    top: 40px;
+}
+
+.status_0 {
+    color: $main;
+    background: $lightgray;
+    &:after {
+        content: 'Ожидает исполнителя';
+    }
+}
+
+.status_10 {
+    color: $lightgray;
+    background: $blue-l;
+    &:after {
+        content: 'В процессе';
+    }
+}
+
+.status_20 {
+    color: $lightgray;
+    background: $primary-l;
+    &:before {
+        content: 'Отказано';
+    }
+}
+
+.status_21 {
+    color: $gray-deepblue;
+    background: $complement-l;
+    &:after {
+        content: 'По времени';
+    }
+}
+
+.status_30 {
+    color: $gray-deepblue;
+    background: $complement-l;
+    &:before {
+        content: 'Исполнено';
+    }
+}
+
+.secondary_item {
+    width: 680px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    p {
+        margin: 0;
+        font-size: $rosa-fs-r;
+        ;
+    }
+    .item_header {
+        font-weight: $rosa-fw-medium;
+        color: $white-main;
+    }
+    .item_description {
+        width: 480px;
+        color: $white-secondary;
+        text-transform: lowercase;
+        font-weight: $rosa-fs-r;
+        a {
+            color: $primary;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            &:hover {
+                text-decoration: none;
+                color: $primary-d;
+            }
+        }
+    }
+}

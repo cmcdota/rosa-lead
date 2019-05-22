@@ -1,0 +1,38 @@
+@charset 'UTF-8';
+@import 'abstracts/variables',
+'abstracts/functions',
+'abstracts/mixins';
+.tooltip-content {
+    background-color: $dark;
+    font-weight: $rosa-fw-medium;
+    max-width: 220px;
+    min-width: 220px;
+    max-height: 100px;
+    max-height: 250px;
+    overflow: hidden;
+    padding: $gp;
+    box-shadow: 0 15px 35px 0 rgba(43, 53, 66, 0.1), 0 5px 15px 0 rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    box-sizing: border-box;
+    position: relative;
+    span {
+        font-size: $rosa-fs-rs;
+        line-height: 1.5;
+        color: $dark-main;
+        display: block;
+        margin-bottom: 0;
+    }
+}
+
+.tooltip-arrow {
+    border-left: $gp solid transparent;
+    border-right: $gp solid transparent;
+    border-top: $gp solid $dark;
+    width: 0px;
+}
+
+.tooltip-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}

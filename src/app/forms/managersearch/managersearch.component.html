@@ -1,0 +1,49 @@
+<form [formGroup]='managerGroup'>
+    <div class="dadata-component" [attr.aria-autocomplete]="showList ? 'list': 'none'" [attr.aria-expanded]="showList ? true : false " role="combobox" [attr.aria-activedescendant]="dadataItemFocus">
+        <div class="form-control">
+            <div class="label__header">
+                <rosa-label [value]="'Принимающий менеджер'"></rosa-label>
+                <rosa-label-helper [helperContent]="helperContent"></rosa-label-helper>
+            </div>
+
+            <div class="preview__wrapper" [style.display]="selectedManager && !editMode ? 'flex' : 'none'">
+                <rosa-preview [header]="selectedManager.name | shortname" [content]="'№'+selectedManager.branch + ' ' + selectedManager.dolzh"></rosa-preview>
+                <rosa-button-flat (click)="editMode=!editMode" [tabindex]="tabindex" [content]="'Изменить'"></rosa-button-flat>
+            </div>
+
+
+
+            <div class="form-control__icon" [style.display]="editMode ? 'block' : 'none'">
+                <rosa-input [placeholder]="'Начните вводить для поиска офиса'" [dropControl]="showList && searchResults" [controlName]="'managerSearch'" [controlOptions]="managerGroup.controls['managerSearch']" [tabindex]="tabindex" role="textbox" (keyup)="onKey($event)"
+                    (focusEvent)="dadataFocus()" (blurEvent)="dadataBlur($event)" [tabindex]="tabindex"></rosa-input>
+
+
+
+                <svg class="icon-ui-dropdown" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M17.85,7.66809695 C17.845,7.67309695 17.84,7.67809695 17.835,7.68309695 L11.974,13.7610969 L6.113,7.68309695 C5.883,7.44509695 5.503,7.43809695 5.264,7.66809695 C5.259,7.67309695 5.254,7.67809695 5.249,7.68309695 L4.668,8.28509695 C4.444,8.51809695 4.444,8.88609695 4.668,9.11909695 L11.267,15.9620969 C11.657,16.3670969 12.29,16.3670969 12.68,15.9620969 L19.279,9.11909695 C19.503,8.88609695 19.503,8.51809695 19.279,8.28509695 L18.698,7.68309695 C18.58,7.56109695 18.423,7.50009695 18.266,7.50009695 C18.117,7.50009695 17.966,7.55509695 17.85,7.66809695 Z"/><rect width="24" height="24" fill="none"/>
+            </svg>
+
+            </div>
+
+            <ul id="dadata-searchbar__listbox" role="listbox" [ngClass]="showList ? 'opened' : ''">
+
+                <li *ngFor="let result of managers | managerfilter: searchTerm; index as i; first as isFirst" (mouseenter)="mouseOverAction(i, $event)" (mouseleave)="mouseLeaveAction(i)" (click)="sendDadata(result)" class="dadataresult" [attr.aria-selected]="isFirst ? true : false"
+                    id="dadata-searchbar__option-{{result.name}}" role="option" tabindex="-1">
+
+                    <div class="dadata dadata_suggest dadataShow">
+                        <span>{{result?.name}}</span>
+                        <span class="suggest__secondary">{{result?.branch}} – {{result?.dolzh}}</span>
+                    </div>
+                </li>
+                <li *ngFor="let result of managers | managerfilter: searchTerm; index as i; first as isFirst" (mouseenter)="mouseOverAction(i, $event)" (mouseleave)="mouseLeaveAction(i)" (click)="sendDadata(result)" class="dadataresult" [attr.aria-selected]="isFirst ? true : false"
+                    id="dadata-searchbar__option-{{result.name}}" role="option" tabindex="-1">
+
+                    <div class="dadata dadata_suggest dadataShow">
+                        <span>{{result?.name}}</span>
+                        <span class="suggest__secondary">{{result?.branch}} – {{result?.dolzh}}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</form>

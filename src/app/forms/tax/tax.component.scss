@@ -1,0 +1,36 @@
+@charset 'UTF-8';
+@import 'abstracts/variables',
+'abstracts/functions',
+'abstracts/mixins';
+:host ::ng-deep rosa-loader {
+    top: 5px;
+    right: 36px;
+    position: absolute;
+}
+
+.input_container {
+    position: relative;
+}
+
+:host ::ng-deep rosa-label {
+    margin-right: $gp;
+}
+
+.label__header {
+    display: flex;
+    position: relative;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.toltip-active {
+    display: block;
+}
+
+.tooltip-container {
+    display: none;
+    z-index: 10;
+    top: -63px;
+    left: 6%;
+    position: absolute;
+}
